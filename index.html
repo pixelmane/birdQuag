@@ -1,0 +1,139 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Flappy Bird Game</title>
+    <style>
+        body { margin: 0; padding: 0; }
+        canvas { background: #87CEEB; display: block; margin: auto; }
+    </style>
+</head>
+<body>
+    <canvas id="gameCanvas" width="320" height="480"></canvas>
+    <script>
+
+const canvas = document.getElementById('gameCanvas');
+const ctx = canvas.getContext('2d');
+
+var sound = new Audio();
+sound.src = "sound.mp3";
+sound.oncanplaythrough = function(){
+    sound.readyToRock = true;
+};
+
+canvas.addEventListener("click", playSound);
+function playSound(){
+    sound.currentTime = 0;
+    sound.play()
+}
+makeQuagmire();
+
+function makeQuagmire(){
+    quagmire_image = new Image();
+    quagmire_image.src = 'quagmire.png';
+     
+}
+const bird = {
+    x: 50,
+    y: canvas.height / 2,
+    width: 30,
+    height: 30,
+    gravity: 0.6, 
+    lift: -10 ,
+    velocity: 0
+};
+
+const pipes = [];
+const pipeWidth = 50; 
+const pipeGap = 150;
+let frame = 0;
+let score = 0;
+
+document.addEventListener('keydown', () => {
+    playSound()
+    bird.velocity = bird.lift;
+});
+
+function drawBird() {
+   ctx.drawImage(quagmire_image, bird.x, bird.y, bird.width, bird.height)
+   
+}
+
+function drawPipes() {
+    ctx.fillStyle = 'green';
+    pipes.forEach(pipe => {
+        ctx.fillRect(pipe.x, 0, pipeWidth, pipe.top);
+        ctx.fillRect(pipe.x, canvas.height - pipe.bottom, pipeWidth, pipe.bottom);
+    });
+}
+
+function updateBird() {
+    bird.velocity += bird.gravity;
+    bird.y += bird.velocity;
+    
+    if (bird.y + bird.height > canvas.height) {
+        bird.y = canvas.height - bird.height;
+        bird.velocity = 0;
+    } else if (bird.y < 0) {
+        bird.y = 0;
+        bird.velocity = 0;
+    }
+}
+
+function updatePipes() {
+    if (frame % 90 === 0) {
+        const topPipeHeight = Math.random() * (canvas.height - pipeGap - 50) + 20;
+        pipes.push({
+            x: canvas.width,
+            top: topPipeHeight,
+            bottom: canvas.height - topPipeHeight - pipeGap
+        });
+    }
+    
+    pipes.forEach(pipe => {
+        pipe.x -= 2;
+    });
+    
+    if (pipes.length > 0 && pipes[0].x < -pipeWidth) {
+        pipes.shift();
+        score++;
+    }
+}
+
+function detectCollision() {
+    for (const pipe of pipes) {
+        if (bird.x < pipe.x + pipeWidth &&
+            bird.x + bird.width > pipe.x &&
+            (bird.y < pipe.top - 10 || bird.y + bird.height - 20 > canvas.height - pipe.bottom)) {
+            alert('Game Over! Score: ' + score);
+            document.location.reload();
+        }
+    }
+}
+
+function drawScore() {
+    ctx.fillStyle = 'black';
+    ctx.font = '24px Arial';
+    ctx.fillText('Score: ' + score, 10, 30);
+}
+
+function gameLoop() {
+    ctx.clearRect(0, 0, canvas.width, canvas.height);
+    
+    drawBird();
+    drawPipes();
+    updateBird();
+    updatePipes();
+    detectCollision();
+    drawScore();
+    
+    frame++;
+    requestAnimationFrame(gameLoop);
+}
+
+gameLoop();
+
+    </script>
+</body>
+</html>
