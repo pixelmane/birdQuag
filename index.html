@@ -12,9 +12,17 @@
 <body>
     <canvas id="gameCanvas" width="320" height="480"></canvas>
     <script>
-
+       
+const preventDefaultScroll = (e) => e.preventDefault();
 const canvas = document.getElementById('gameCanvas');
 const ctx = canvas.getContext('2d');
+
+canvas.width  = window.innerWidth;
+canvas.height = window.innerHeight;
+window.onload = window.onresize = function() {
+  canvas.width = theCanvas.offsetWidth;
+  canvas.height = theCanvas.offsetHeight;
+}
 
 var sound = new Audio();
 sound.src = "sound.mp3";
