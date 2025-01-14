@@ -1,0 +1,11 @@
+#gameResult {
+position: fixed;
+background-color: red;
+width: 100px;
+height: 100px;
+}
+
+div {
+color: red;
+font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
+}
