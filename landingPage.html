@@ -12,6 +12,7 @@
       margin: 0;
       padding: 0;
       box-sizing: border-box;
+      color: black;
       font-family:Arial, Helvetica, sans-serif ;
     }
     
@@ -58,7 +59,10 @@
       color: #333;
       font-weight: bold;
     }
-    
+    #startBox {
+      display: flex;
+      flex-direction: column;
+    }
     h1, h2 {
       font-size: 24px;
       margin-bottom: 10px;
@@ -110,6 +114,23 @@
       color: white;
       margin-top: 10px;
     }
+    .ikea-button {
+  background-color: #006f87;  /* IKEA Blue */
+  color: white;
+  font-family: 'Helvetica Neue', Arial, sans-serif; /* IKEA's font style */
+  font-size: 16px;
+  font-weight: bold;
+  margin-top: 10px;
+  padding: 12px 24px;
+  border: 2px solid #006f87;
+  border-radius: 25px;  /* Rounded edges */
+  text-align: center;
+  text-decoration: none;
+  display: inline-block;
+  cursor: pointer;
+  transition: all 0.3s ease;
+}
+
     </style>
     <script>// Color Selection
         const colorButtons = document.querySelectorAll('.color-option');
@@ -153,6 +174,11 @@
        
         <img src="ikea1.png" alt="Eket Storage Unit" class="product-image">
         
+        <div id="startBox">
+        <h2>Enter Code:</h2>
+   <input id="inputMain" > <a id="quagmireStart" href="start2.html"><button class='ikea-button'>Play as Quagmire</button></a>
+   <a id="julesStart" href="start3.html" ><button class="ikea-button">Play as Jools Lebron</button></a>
+    </div>
         
         
 
@@ -161,7 +187,7 @@
       
       <!-- Cart Summary Section -->
       <section class="cart-summary">
-    <a href="landingPage.html"><img src="ikea3.png" alt="Eket Storage Unit" class="product-image"></a>
+    <a href="index copy.html"><img src="ikea3.png" alt="Eket Storage Unit" class="product-image"></a>
         
       </section>
     </div>

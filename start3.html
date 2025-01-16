@@ -9,7 +9,7 @@
         html {height: 100%; width: 100%}
         #gameResult {height: 100pt; width: 100pt; position: fixed}
         #innerGameResult {background: url(sequence/Image0001.png); background-size: cover;}
-        body { margin: 0; padding: 0; max-width: 500px;}
+        body { margin: 0; padding: 0; }
         canvas { background-image: url('sequence/image0452.png');background-repeat: no-repeat; display: block; margin: auto; }
     </style>
     
@@ -48,14 +48,14 @@ makeQuagmire();
 
 function makeQuagmire(){
     quagmire_image = new Image();
-    quagmire_image.src = 'quagmire.png';
+    quagmire_image.src = 'optionalJoolsLebron.png';
      
 }
 const bird = {
     x: 50,
     y: canvas.height / 2,
-    width: 30,
-    height: 30,
+    width: 35,
+    height: 35,
     gravity: 0.6, 
     lift: -10 ,
     velocity: 0
@@ -78,7 +78,7 @@ function drawBird() {
 }
 
 function drawPipes() {
-    ctx.fillStyle = 'blue';
+    ctx.fillStyle = 'green';
     pipes.forEach(pipe => {
         ctx.fillRect(pipe.x, 0, pipeWidth, pipe.top);
         ctx.fillRect(pipe.x, canvas.height - pipe.bottom, pipeWidth, pipe.bottom);
