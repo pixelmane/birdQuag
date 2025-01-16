@@ -37,7 +37,7 @@ sound.oncanplaythrough = function(){
     sound.readyToRock = true;
 };
 
-canvas.addEventListener("click", playSound);
+
 function playSound(){
     sound.currentTime = 0;
     sound.play()
@@ -68,7 +68,7 @@ let frame = 0;
 let score = 0;
 
 document.addEventListener('touchstart', () => {
-    playSound()
+    
     bird.velocity = bird.lift;
 });
 
@@ -128,7 +128,8 @@ function detectCollision() {
         if (bird.x < pipe.x + pipeWidth &&
             bird.x + bird.width > pipe.x &&
             (bird.y < pipe.top - 10 || bird.y + bird.height - 20 > canvas.height - pipe.bottom)) {
-            alert('Game Over! Score: ' + score);
+                playSound()
+                alert('Game Over! Score: ' + score);
 
             window.location.href = 'index.html'
         }
