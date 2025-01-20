@@ -5,7 +5,7 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <meta name="description" content="Eket Storage - IKEA Style">
   <title>Eket Storage - Customization</title>
- 
+  <link rel="stylesheet" href="styles.css">
 </head>
 <style>/* Resetting margin and padding */
     * {
@@ -102,42 +102,70 @@
     .cart-summary {
       width: 45%;
       background-color: #fff;
+      
       border-radius: 2px;
       box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
     }
     
     footer {
       text-align: center;
+     
+     
       color: white;
       margin-top: 10px;
     }
     .ikea-button {
-        background-color: #006f87;  /* IKEA Blue */
-        color: white;
-        font-family: 'Helvetica Neue', Arial, sans-serif; /* IKEA's font style */
-        font-size: 16px;
-        font-weight: bold;
-        margin-top: 10px;
-        padding: 12px 24px;
-        border: 2px solid #006f87;
-        border-radius: 25px;  /* Rounded edges */
-        text-align: center;
-        text-decoration: none;
-        display: inline-block;
-        cursor: pointer;
-        transition: all 0.3s ease;
-    }
-    #inputMain {
+  background-color: #006f87;  /* IKEA Blue */
+  color: white;
+  font-family: 'Helvetica Neue', Arial, sans-serif; /* IKEA's font style */
+  font-size: 16px;
+  font-weight: bold;
+  margin-top: 10px;
+  padding: 12px 24px;
+  border: 2px solid #006f87;
+  border-radius: 25px;  /* Rounded edges */
+  text-align: center;
+  text-decoration: none;
+  display: inline-block;
+  cursor: pointer;
+  transition: all 0.3s ease;
+}
+#inputMain {
       margin-top: 10px;
       margin-bottom: 10px;
     }
-</style>
-
+    </style>
+    <script>// Color Selection
+        const colorButtons = document.querySelectorAll('.color-option');
+        colorButtons.forEach(button => {
+          button.addEventListener('click', function() {
+            colorButtons.forEach(btn => btn.classList.remove('selected'));
+            button.classList.add('selected');
+          });
+        });
+        
+        // Add to Cart Button Functionality
+        const addToCartButton = document.getElementById('add-to-cart');
+        const cartInfo = document.getElementById('cart-info');
+        
+        addToCartButton.addEventListener('click', function() {
+          const selectedColor = document.querySelector('.color-option.selected');
+          const size = document.getElementById('size').value;
+        
+          if (selectedColor) {
+            const color = selectedColor.textContent;
+            cartInfo.textContent = `You have added a ${size} ${color} storage unit to your cart.`;
+          } else {
+            cartInfo.textContent = "Please select a color before adding to cart.";
+          }
+        });
+        </script>
 <body>
   <!-- Header Section -->
   <header>
     <div class="header-container">
         <a href="https://www.ikea.com"><img src="ikeaLogo.png" alt="IKEA Logo" class="logo"></a>
+     
     </div>
   </header>
 
@@ -146,17 +174,24 @@
     <div class="container">
       <!-- Product Image & Options Section -->
       <section class="product-options">
+       
         <img src="ikea1.png" alt="Eket Storage Unit" class="product-image">
+        
         <div id="startBox">
-          <h3>Your design code:</h3>
-          <input id="inputMain" placeholder="Enter the code here">
-          <a id="quagmireStart" ><button class='ikea-button'>Open Design</button></a>
-            </div>
+        <h3>Your design code:</h3>
+   <input id="inputMain" placeholder="TIKTOKBAN (code accepted)" style="color: green"> <a id="quagmireStart" href="start2.html"><button class='ikea-button'>Play as Quagmire</button></a>
+   <a id="julesStart" href="start3.html" ><button class="ikea-button">Play as Jools Lebron</button></a>
+    </div>
+        
+        
+
+       
       </section>
       
       <!-- Cart Summary Section -->
       <section class="cart-summary">
-        <a href="landingPage.html"><img src="ikea3.png" alt="Eket Storage Unit" class="product-image"></a>
+    <a href="landingPage.html"><img src="ikea3.png" alt="Eket Storage Unit" class="product-image"></a>
+        
       </section>
     </div>
   </main>
@@ -165,26 +200,10 @@
   <footer>
     <div class="footer-container">
         <img src="bottom.png" alt="Eket Storage Unit" class="product-image">
+     
     </div>
   </footer>
 
-  <script>
-    // Quagmire Start Button Click Event
-    document.getElementById('quagmireStart').addEventListener('click', function(event) {
-        const inputMainValue = document.getElementById('inputMain').value;
-    
-        // Prevent default link navigation (we'll handle it manually)
-        event.preventDefault();
-    
-        // Check if the input value is "TIKTOKBAN"
-        if (inputMainValue === "TIKTOKBAN") {
-            // Redirect to the new page (choosePlayer.html)
-            window.location.href = "choosePlayer.html";
-        } else {
-            // Alert if the value is not "TIKTOKBAN"
-            alert("HEJ! No design found!");
-        }
-    });
-    </script>
+  <script src="script.js"></script>
 </body>
 </html>
