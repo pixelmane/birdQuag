@@ -41,7 +41,6 @@ sound.oncanplaythrough = function(){
 function playSound(){
     sound.currentTime = 0;
     sound.play()
-    alert('GIGGITY! You stacked ' + score + ' of 453 needed to complete quagmire shelf.');
     
 
 }
@@ -130,7 +129,8 @@ function detectCollision() {
             bird.x + bird.width > pipe.x &&
             (bird.y < pipe.top - 10 || bird.y + bird.height - 20 > canvas.height - pipe.bottom)) {
             playSound()
-            
+            alert('GIGGITY! You stacked ' + score + ' of 453 needed to complete quagmire shelf.');
+
 
             window.location.href = 'choosePlayer.html'
         }
