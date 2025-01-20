@@ -128,8 +128,8 @@ function detectCollision() {
         if (bird.x < pipe.x + pipeWidth &&
             bird.x + bird.width > pipe.x &&
             (bird.y < pipe.top - 10 || bird.y + bird.height - 20 > canvas.height - pipe.bottom)) {
-            playSound()
-            alert('GIGGITY! You stacked ' + score + ' of 453 needed to complete quagmire shelf.');
+            
+            setTimeout('GIGGITY! You stacked ' + score + ' of 453 needed to complete quagmire shelf.', 1500);
 
 
             window.location.href = 'choosePlayer.html'
@@ -153,6 +153,7 @@ function gameLoop() {
     updateBird();
     updatePipes();
     detectCollision();
+    playSound();
     drawScore();
     
     frame++;
